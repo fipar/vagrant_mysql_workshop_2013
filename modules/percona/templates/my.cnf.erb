@@ -1,0 +1,19 @@
+[mysqld_safe]
+
+[mysqld]
+datadir=/var/lib/mysql
+user=mysql
+log_error=error.log
+
+binlog_format=ROW
+log-bin
+long_query_time=0
+slow_query_log=1
+
+innodb_log_file_size=64M
+
+[mysql]
+prompt="<%=hostname %> mysql 5.6> "
+
+[client]
+user=root
