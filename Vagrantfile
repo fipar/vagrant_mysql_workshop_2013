@@ -1,6 +1,18 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+Vagrant.configure("1") do |config|
+	config.vm.box = 'centos6'
+	config.vm.box_url = 'https://dl.dropbox.com/u/7225008/Vagrant/CentOS-6.3-x86_64-minimal.box' 
+	config.vm.host_name = 'ps56node1'
+	config.vm.customize ["modifyvm", :id, "--memory", "1024", "--cpuexecutioncap", "60"]
+	config.vm.provision :puppet do |puppet|
+		puppet.manifests_path = "manifests"
+		puppet.manifest_file = "default.pp"
+		puppet.module_path = "modules"
+	end
+end
+
 Vagrant.configure("2") do |config|
 
   config.vm.define :ps56node1 do |node1_config|
